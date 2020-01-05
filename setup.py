@@ -19,7 +19,7 @@ REQUIREMENTS = [
 CLASSIFIERS = [ 
     'Development Status :: 3 - Alpha', 
     'Intended Audience :: Developers', 
-    'Topic :: statistics', 
+    'Topic :: Internet', 
     'License :: OSI Approved :: MIT License', 
     'Programming Language :: Python :: 3', 
     'Programming Language :: Python :: 3.3', 
@@ -28,7 +28,7 @@ CLASSIFIERS = [
     ] 
   
 # calling the setup function  
-setup(name='rbase', 
+setup(name='robustbase', 
       version='1.0.0', 
       description='Qn, Sn, MAD, IQR, SD', 
       long_description="statistics", 
