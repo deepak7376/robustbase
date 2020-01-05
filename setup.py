@@ -28,7 +28,7 @@ CLASSIFIERS = [
     ] 
   
 # calling the setup function  
-setup(name='robustbase', 
+setup(name='rbase', 
       version='1.0.0', 
       description='Qn, Sn, MAD, IQR, SD', 
       long_description="statistics", 
