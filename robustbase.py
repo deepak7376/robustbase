@@ -7,73 +7,82 @@ import numpy as np
 #E-mail: dky.united@gmail.com
 #This method is based on Rousseeuw and Croux
 
-# Median absolute deviation (MAD), Gaussian efficiency 37%
-def mad(data):
-    if (len(data)==0):
-        return None
-    elif len(data)==1:
-        return 0
-    amd=[]                             #absolute median deviation
-    median=statistics.median(data)
-    for x in data:
-        amd.append(abs(x-median))
-    return (1.4826*statistics.median(amd))
+class robustbase():
 
-# Sn scale estimator , Gaussian efficiency 58%
-def Sn(data):
+    def __init__(self, data):
+        self.data = data
 
-    if (len(data)==0):
-        return None
-    elif len(data)==1:
-        return 0
-    med=[]
-    for i in data:
-        diff=[]
-        for j in data:
-            diff.append(abs(i-j))
-        med.append(statistics.median(diff))
-    return(1.1926*(statistics.median(med)))
+    # Median absolute deviation (MAD), Gaussian efficiency 37%
+    def mad(self):
+        if (len(self.data)==0):
+            return None
+        elif len(self.data)==1:
+            return 0
+        amd=[]                             #absolute median deviation
+        median=statistics.median(self.data)
+        for x in self.data:
+            amd.append(abs(x-median))
+        return 1.4826*statistics.median(amd)
 
-# Standard deviation, non-robust method
-def sd(data):
+    # Sn scale estimator , Gaussian efficiency 58%
+    def Sn(self):
 
-    if len(data)==0:
-        return None
-    elif len(data)==1:
-        return 0
-    return (statistics.stdev(data))
+        if (len(self.data)==0):
+            return None
+        elif len(self.data)==1:
+            return 0
+        med=[]
+        for i in self.data:
+            diff=[]
+            for j in self.data:
+                diff.append(abs(i-j))
+            med.append(statistics.median(diff))
+        return(1.1926*(statistics.median(med)))
 
-# Interquartile range
-def iqr(data):
+    # Standard deviation, non-robust method
+    def sd(self):
 
-    if len(data)==0:
-        return None
-    elif len(data)==1:
-        return 0
-    q75,q25=np.percentile(data,[75,25])
-    return (q75,q25)
+        if len(self.data)==0:
+            return None
+        elif len(self.data)==1:
+            return 0
+        return (statistics.stdev(self.data))
 
-# Qn scale estimator, Gaussian effieciency 82%
-def Qn(data):
+    # Interquartile range
+    def iqr(self):
 
-    if (len(data)==0):
-        return None
-    elif len(data)==1:
-        return 0
-    diff = []
-    h=0
-    k=0
-    for i in range(0,len(data)):
-        for j in range(0,len(data)):
-            if i<j:
-                diff.append(abs(data[i]-data[j]))
+        if len(self.data)==0:
+            return None
+        elif len(self.data)==1:
+            return 0
+        q75,q25=np.percentile(self.data,[75,25])
+        return (q75,q25)
 
-    diff.sort()
-    h=int(math.floor(len(data)/2)+1)   #h=[n/2]+1
-    k=int(h*(h-1)/2)                    #k=h(h-1)/2
-    return 2.2219*diff[k-1]
+    # Qn scale estimator, Gaussian effieciency 82%
+    def Qn(self):
+
+        if (len(self.data)==0):
+            return None
+        elif len(self.data)==1:
+            return 0
+        diff = []
+        h=0
+        k=0
+        for i in range(0,len(self.data)):
+            for j in range(0,len(self.data)):
+                if i<j:
+                    diff.append(abs(self.data[i]-self.data[j]))
+
+        diff.sort()
+        h=int(math.floor(len(self.data)/2)+1)   #h=[n/2]+1
+        k=int(h*(h-1)/2)                    #k=h(h-1)/2
+        return 2.2219*diff[k-1]
 
 
+if __name__ == '__main__':
 
-
+    data = np.random.randn(10)
+    a = robustbase(data).iqr()
+    y = 10 + a[0]
+    print(y)
 
