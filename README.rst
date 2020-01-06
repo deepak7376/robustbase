@@ -1,4 +1,4 @@
-rboustbase
+robustbase
 =============
 A Python Library to Calculate Estimators 
 
@@ -28,7 +28,7 @@ The Sn scale estimate is defined as:
 
 Sn=cMediani{Medianj|xi−xj|}
 That is, for each i we compute the median of {|xi - xj j = 1, ..., n}. The median of these n numbers is then the estimate of Sn. The constant c is determined to make Sn a consistent estimator. The value used is 1.1926 (this is the value needed to make Sn a consistent estimator for normal data).
-'ReadMore https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/sn_scale.htm'_
+'ReadMore <https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/sn_scale.htm>'_
 
 MAD
 ========
