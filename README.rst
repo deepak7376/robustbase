@@ -3,6 +3,9 @@ robustbase
 =============
 A Python Library to Calculate Estimators 
 
+.. toctree::
+ :numbered:
+
 Qn 
 =========
 Qn scale estimator
