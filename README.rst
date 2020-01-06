@@ -1,5 +1,5 @@
 robustbase
-=========================
+===========
 A Python Library to Calculate Estimators
 
 :Author: Deepak Yadav
@@ -81,7 +81,7 @@ or
   print(Qn([data])
   
   
-  References
-  =============
-
+ References
+=============
+coming soon....
 
