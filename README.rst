@@ -14,7 +14,7 @@ The median absolute deviation (MAD) and interquartile range are the two most com
 - The MAD statistic also has an implicit assumption of symmetry. That is, it measures the distance from a measure of central location (the median).
 
 Rousseeuw and Croux proposed the Qn estimate of scale as an alternative to the MAD. It shares desirable robustness properties with MAD (50% breakdown point, bounded influence function). In addition, it has significantly better normal efficiency (82%) and it does not depend on symmetry.
-`ReadMore https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/qn_scale.htm` _
+`ReadMore <https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/qn_scale.htm>` _
 
 Sn
 =======
