@@ -57,15 +57,20 @@ Installation
 ---------------
 * Install from python pacakage 'or'
  -pip install robustbase
-or 
+ 
 * Clone the repo and run 
  - python3 setup.py install
  
 How to Use
 ---------------
-.. code-block:: python
-   from robustbase.robustbase import Qn
-   print(Qn([1,2,3,4]))
+code:: 
+
+  from robustbase.robustbase import Qn
+  import numpy as np
+  
+  data = np.random.rand(10)
+  print(Qn(data))
  
 References
 ------------
+soon...
