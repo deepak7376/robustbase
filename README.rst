@@ -1,10 +1,12 @@
-=============
 robustbase
-=============
-A Python Library to Calculate Estimators 
+=========================
+A Python Library to Calculate Estimators
 
-.. toctree::
- :numbered:
+:Author: Deepak Yadav
+:Version: $Revision: 1.0.0 $
+:Copyright: This document has been placed in the public domain.
+
+.. contents::
 
 Qn 
 =========
@@ -62,5 +64,24 @@ IQR = Q3 – Q1.
 'ReadMore https://www.statisticshowto.datasciencecentral.com/probability-and-statistics/interquartile-range/"_
 
 
+Installation
+=============
+* Install from python pacakage 'or'
+ -pip install robustbase
+or 
+* Clone the repo and run 
+ - python3 setup.py install
+ 
+ 
+ How to use
+ ===========
+ ::
+  from robustbase.robustbase import Qn
+  data = np.random.rand(20)
+  print(Qn([data])
+  
+  
+  References
+  =============
 
 
