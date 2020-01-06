@@ -1,7 +1,11 @@
 robustbase
 ===========
-A Python Library to Calculate Estimators
+A Python Library to Calculate Estimators.
+:Author: Deepak Yadav
+:Version: $Revision: 1.0.0 $
+:Copyright: This document has been placed in the public domain.
 
+.. contents::
 
 
 Qn scale estimator
