@@ -1,3 +1,7 @@
+rboustbase
+=============
+A Python Library to Calculate Estimators 
+
 Qn 
 =========
 Qn scale estimator
@@ -10,7 +14,7 @@ The median absolute deviation (MAD) and interquartile range are the two most com
 - The MAD statistic also has an implicit assumption of symmetry. That is, it measures the distance from a measure of central location (the median).
 
 Rousseeuw and Croux proposed the Qn estimate of scale as an alternative to the MAD. It shares desirable robustness properties with MAD (50% breakdown point, bounded influence function). In addition, it has significantly better normal efficiency (82%) and it does not depend on symmetry.
-.._readmore: https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/qn_scale.htm
+'ReadMore https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/qn_scale.htm'_
 
 Sn
 =======
@@ -24,7 +28,7 @@ The Sn scale estimate is defined as:
 
 Sn=cMediani{Medianj|xi−xj|}
 That is, for each i we compute the median of {|xi - xj j = 1, ..., n}. The median of these n numbers is then the estimate of Sn. The constant c is determined to make Sn a consistent estimator. The value used is 1.1926 (this is the value needed to make Sn a consistent estimator for normal data).
-https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/sn_scale.htm
+'ReadMore https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/sn_scale.htm'_
 
 MAD
 ========
@@ -38,7 +42,7 @@ The MAD is defined as:
 
 MAD = median(|Yi – median(Yi|)
 
-https://www.statisticshowto.datasciencecentral.com/median-absolute-deviation/
+'ReadMore https://www.statisticshowto.datasciencecentral.com/median-absolute-deviation/'_
 
 IQR
 =======
@@ -51,7 +55,7 @@ The interquartile range is a measure of where the “middle fifty” is in a dat
 The interquartile range formula is the first quartile subtracted from the third quartile:
 IQR = Q3 – Q1.
 
-https://www.statisticshowto.datasciencecentral.com/probability-and-statistics/interquartile-range/
+'ReadMore https://www.statisticshowto.datasciencecentral.com/probability-and-statistics/interquartile-range/"_
 
 
 
