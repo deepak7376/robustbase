@@ -2,9 +2,11 @@
 from setuptools import setup, find_packages
   
 # reading long description from file 
-with open('README.rst') as file: 
-    long_description = file.read() 
-  
+from os import path
+this_directory = path.abspath(path.dirname(__file__))
+with open(path.join(this_directory, 'README.rst'), encoding='utf-8') as f:
+    long_description = f.read()
+
   
 # specify requirements of your package here 
 REQUIREMENTS = [
@@ -29,9 +31,10 @@ CLASSIFIERS = [
   
 # calling the setup function  
 setup(name='robustbase', 
-      version='2.1', 
+      version='0.2.0', 
       description='A Python Based Library to Calculate Estimators (Sn, Qn, MAD, IQR)', 
       long_description=long_description, 
+      long_description_content_type='text/markdown',
       url='https://github.com/deepak7376/robustbase', 
       author='Deepak Yadav', 
       author_email='dky.united@gmail.com', 

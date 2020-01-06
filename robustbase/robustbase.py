@@ -55,7 +55,7 @@ def iqr(data):
 def Qn(data):
     """
     Qn scale estimator, Gaussian effieciency 82%
-    """"
+    """
 
     if (len(data)==0):
         return None
