@@ -3,18 +3,14 @@ import math
 import numpy as np
 
 
-#Author Deepak Yadav
+#Author: Deepak Yadav
 #E-mail: dky.united@gmail.com
-#This method is based on Rousseeuw and Croux
 
-#class rbase():
-
-# def __init__(self):
-#     pass
-
-# Median absolute deviation (MAD), Gaussian efficiency 37%
-#@staticmethod
 def mad(data):
+    """
+    Median absolute deviation (MAD), Gaussian efficiency 37%
+    
+    """
     if (len(data)==0):
         return None
     elif len(data)==1:
@@ -25,9 +21,11 @@ def mad(data):
         amd.append(abs(x-median))
     return 1.4826*statistics.median(amd)
 
-# Sn scale estimator , Gaussian efficiency 58%
-#@staticmethod
+
 def Sn(data):
+    """
+    Sn scale estimator , Gaussian efficiency 58%
+    """
 
     if (len(data)==0):
         return None
@@ -41,19 +39,11 @@ def Sn(data):
         med.append(statistics.median(diff))
     return(1.1926*(statistics.median(med)))
 
-# Standard deviation, non-robust method
-#@staticmethod
-def sd(data):
 
-    if len(data)==0:
-        return None
-    elif len(data)==1:
-        return 0
-    return (statistics.stdev(data))
-
-# Interquartile range
-#@staticmethod
 def iqr(data):
+    """
+    Interquartile range
+    """
 
     if len(data)==0:
         return None
@@ -62,9 +52,10 @@ def iqr(data):
     q75,q25=np.percentile(data,[75,25])
     return (q75,q25)
 
-# Qn scale estimator, Gaussian effieciency 82%
-#@staticmethod
 def Qn(data):
+    """
+    Qn scale estimator, Gaussian effieciency 82%
+    """"
 
     if (len(data)==0):
         return None
