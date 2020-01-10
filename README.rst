@@ -1,7 +1,8 @@
 robustbase
 ===========
 A Python Library to Calculate Estimators.
-<"https://robustbase.readthedocs.io/en/latest/">
+https://robustbase.readthedocs.io/en/latest/
+
 :Author: Deepak Yadav
 :Version: 2.0
 :Copyright: This document has been placed in the public domain.
