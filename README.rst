@@ -55,7 +55,7 @@ IQR = Q3 – Q1.
 
 Installation
 ---------------
-* Install from python pacakage 'or'
+* Install from PyPI pacakage 'or'
  - pip install robustbase
  
 * Clone the repo and run 
