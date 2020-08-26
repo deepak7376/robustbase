@@ -6,14 +6,6 @@ with open('README.rst', encoding='utf-8') as f:
     long_description = f.read()
 
   
-# specify requirements of your package here 
-REQUIREMENTS = [
-'certifi==2019.11.28',
-'docutils==0.15.2',
-'numpy==1.18.0',
-'statistics==1.0.3.5'
-
-] 
   
 # some more details 
 CLASSIFIERS = [ 
@@ -26,7 +18,7 @@ CLASSIFIERS = [
   
 # calling the setup function  
 setup(name='robustbase', 
-      version='0.2.2', 
+      version='0.2.3', 
       description='A Python Based Library to Calculate Estimators (Sn, Qn, MAD, IQR)', 
       long_description=long_description, 
       long_description_content_type='text/markdown',
