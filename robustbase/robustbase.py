@@ -72,7 +72,7 @@ def Qn(data):
     diff.sort()
     h=int(math.floor(len(data)/2)+1)   #h=[n/2]+1
     k=int(h*(h-1)/2)                    #k=h(h-1)/2
-    return 2.2219*diff[k-1]
+    return 2.219144465985076*diff[k-1]
 
 
 if __name__ == '__main__':
