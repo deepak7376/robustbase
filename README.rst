@@ -66,7 +66,7 @@ How to Use
 ---------------
 code:: 
 
-  from robustbase.robustbase import Qn
+  from robustbase import Qn
   import numpy as np
   
   data = np.random.rand(10)
