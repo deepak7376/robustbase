@@ -2,7 +2,7 @@
 from setuptools import setup, find_packages
   
 # reading long description from file 
-with open('README.rst', encoding='utf-8') as f:
+with open('README.md', encoding='utf-8') as f:
     long_description = f.read()
 
   
@@ -18,7 +18,7 @@ CLASSIFIERS = [
   
 # calling the setup function  
 setup(name='robustbase', 
-      version='0.2.5', 
+      version='0.2.6', 
       description='A Python Based Library to Calculate Estimators (Sn, Qn, MAD, IQR)', 
       long_description=long_description, 
       long_description_content_type='text/markdown',
