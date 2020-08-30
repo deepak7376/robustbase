@@ -27,10 +27,10 @@ from robustbase import Qn
 x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 # with bias correction
-res = Qn(x, constant = 2.21914, finite_corr=True)  # ans = 3.196183
+res = Qn(x)  # ans = 3.196183
 
 # Without bias correction
-res = Qn(x, constant = 2.21914, finite_corr=False)  # ans = 4.43828
+res = Qn(x, finite_corr=False)  # ans = 4.43828
 
 ```
 
