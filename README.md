@@ -48,7 +48,6 @@ from robustbase import Sn
 x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 # with bias correction
-# default finite_corr = True
 res = Sn(x)  # ans = 3.5778 
 # Note: This is not working properly as R Sn code works (Fix it)
 
