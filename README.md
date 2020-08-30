@@ -15,7 +15,7 @@ pip install robustbase
 
 This package is used to calculate the following statistical estimators.
 
-* Qn scale estimator
+* **Qn scale estimator**
     * Compute the robust scale estimator Qn, an efficient alternative to the MAD. [Read More.](https://rdrr.io/rforge/robustbase/man/Qn.html)
 ```python
 Qn(x, constant = 2.21914, finite_corr=True)
@@ -34,7 +34,7 @@ res = Qn(x, finite_corr=False)  # ans = 4.43828
 
 ```
 
-* Sn scale estimator
+* **Sn scale estimator**
     * Compute the robust scale estimator Sn, an efficient alternative to the MAD.[Read More.](https://rdrr.io/rforge/robustbase/man/Sn.html)
 
 ```python
@@ -57,7 +57,7 @@ res = Sn(x, finite_corr=False)  # ans = 3.5778
 
 ```
 
-* Median Absolute Deviation(MAD)
+* **Median Absolute Deviation(MAD)**
 
 ```python
 mad(x, center = None, constant = 1.4826, na = False,
@@ -71,7 +71,7 @@ x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 res = mad(x)
 
 ```
-* Interquartile Range (IQR)
+* **Interquartile Range (IQR)**
 
 ```python
 iqr(x)
