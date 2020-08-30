@@ -18,7 +18,7 @@ CLASSIFIERS = [
   
 # calling the setup function  
 setup(name='robustbase', 
-      version='0.2.6', 
+      version='0.2.7', 
       description='A Python Based Library to Calculate Estimators (Sn, Qn, MAD, IQR)', 
       long_description=long_description, 
       long_description_content_type='text/markdown',
