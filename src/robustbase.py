@@ -120,9 +120,8 @@ def Qn(x, constant = 2.21914, finite_corr=True):
     h=0
     k=0
     for i in range(0,n):
-        for j in range(0,n):
-            if i<j:
-                diff.append(abs(x[i]-x[j]))
+        for j in range(i + 1,n):
+            diff.append(abs(x[i]-x[j]))
 
     diff.sort()
     h=int(math.floor(n/2)+1)
