@@ -72,24 +72,41 @@ def mad(x, center = None, constant = 1.4826, na = False,
 
 
 def Sn(x, constant = 1.1926, finite_corr=True):
+    
     """
     Sn scale estimator , Gaussian efficiency 58%
+
+    Attributes
+    ----------
+    x : list
+        numeric vector of observations.
+    constant : float
+        number by which the result is multiplied; the default achieves consisteny for normally distributed data.
+    finite_corr : bool
+        logical indicating if the finite sample bias correction factor should be applied. Default to TRUE unless constant is specified.
     """
     n = len(x)
-
     if n==0:
         raise Exception("x sholud be non-empty !!!")
     if n==1:
         return 0
-    
-    med=[]
-    for i in x:
-        diff=[]
-        for j in x:
-            diff.append(abs(i-j))
-        med.append(median(diff))
-    return round(bias_corr(n) * median(med) * constant, 6) if finite_corr==True else round(median(med) * constant, 6)
 
+    y = np.array([x,]*n)
+    z = y.transpose()
+    diff = abs(y-z)
+    med = np.median(diff, axis=0)
+    r = round(median(med) * constant, 6)
+
+    if finite_corr==True :
+        if n <=9 :
+            correction = [.743, 1.851, .954, 1.351, .993, 1.198, 1.005, 1.131]
+            correction = correction[n-2]
+        elif (n % 2) == 1:
+            correction = n/(n-.9)
+        else : 
+            correction = 1
+        r= correction*r
+    return r
 
 def iqr(x):
     """
@@ -108,6 +125,15 @@ def iqr(x):
 def Qn(x, constant = 2.21914, finite_corr=True):
     """
     Qn scale estimator, Gaussian effieciency 82%
+
+    Attributes
+    ----------
+    x : list
+        numeric vector of observations.
+    constant : float
+        number by which the result is multiplied; the default achieves consisteny for normally distributed data.
+    finite_corr : bool
+        logical indicating if the finite sample bias correction factor should be applied. Default to TRUE unless constant is specified.
     """
     n = len(x)
 
@@ -127,17 +153,4 @@ def Qn(x, constant = 2.21914, finite_corr=True):
     h=int(math.floor(n/2)+1)
     k=int(h*(h-1)/2)                  
     return round(constant*diff[k-1]*bias_corr(n), 6) if finite_corr==True else round(constant*diff[k-1], 6)
-
-
-if __name__ == '__main__':
-
-    x = [i for i in range(1,11)]
-    #a = robustbase()
-    # print(median(x, low=True))
-    # print(mad(x,high=True))
-    # print(iqr([1]))
-    print(Sn(x))
-    print(Sn(x, finite_corr=False))
-
-    
 

@@ -1,12 +1,35 @@
 
 from setuptools import setup, find_packages
+import subprocess
+import os
+
+version = (
+    subprocess.run(["git", "describe", "--tags"], stdout=subprocess.PIPE)
+    .stdout.decode("utf-8")
+    .strip()
+)
+
+if "-" in version:
+    # when not on tag, git describe outputs: "1.3.3-22-gdf81228"
+    # pip has gotten strict with version numbers
+    # so change it to: "1.3.3+22.git.gdf81228"
+    # See: https://peps.python.org/pep-0440/#local-version-segments
+    v,i,s = version.split("-")
+    version = v + "+" + i + ".git." + s
+
+assert "-" not in version
+assert "." in version
+
+assert os.path.isfile("version.py")
+with open("VERSION", "w", encoding="utf-8") as fh:
+    fh.write("%s\n" % version)
+
   
 # reading long description from file 
 with open('README.md', encoding='utf-8') as f:
     long_description = f.read()
 
-  
-  
+    
 # some more details 
 CLASSIFIERS = [ 
     'Development Status :: 3 - Alpha', 
@@ -18,7 +41,7 @@ CLASSIFIERS = [
   
 # calling the setup function  
 setup(name='robustbase', 
-      version='0.2.8', 
+      version=version, 
       description='A Python Based Library to Calculate Estimators (Sn, Qn, MAD, IQR)', 
       long_description=long_description, 
       long_description_content_type='text/markdown',
