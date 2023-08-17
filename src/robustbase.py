@@ -40,117 +40,257 @@ def bias_corr(n):
     return corr_factor
 
 def median(x, low=False, high=False):
-    if low==True:
+    """
+    Calculate the median of a given list of values.
+
+    Parameters
+    ----------
+    x : list-like
+        List of numeric values.
+    low : bool, optional
+        If True, calculate the 'lo-median' (for even sample size, take the smaller of the two middle values).
+    high : bool, optional
+        If True, calculate the 'hi-median' (for even sample size, take the larger of the two middle values).
+
+    Returns
+    -------
+    median : float
+        The calculated median based on the provided options.
+
+    Notes
+    -----
+    The median is a measure of central tendency that represents the middle value in a sorted dataset.
+    It is robust to outliers and is often used as an alternative to the mean.
+
+    References
+    ----------
+    [1] https://docs.python.org/3/library/statistics.html#statistics.median
+    """
+
+    # Check if low flag is set
+    if low == True:
         return statistics.median_low(x)
-    
-    if high==True:
+
+    # Check if high flag is set
+    if high == True:
         return statistics.median_high(x)
-    
+
+    # Calculate the median using the default (high) method
     return statistics.median_high(x)
 
-def mad(x, center = None, constant = 1.4826, na = False,
-    low = False, high = False):
+
+def mad(x, center=None, constant=1.4826, na=False, low=False, high=False):
     """
-    Median absolute deviation (MAD), Gaussian efficiency 37%
-    
+    Calculate the Median Absolute Deviation (MAD) for data x.
+
+    Parameters
+    ----------
+    x : array-like
+        Numeric vector of observations.
+    center : float or None, optional
+        Center value to use for calculating the MAD. If None, the median of x is used.
+    constant : float, optional
+        Number by which the result is multiplied; the default achieves Gaussian efficiency.
+    na : bool, optional
+        Placeholder for NA handling (not used in this implementation).
+    low : bool, optional
+        If True, compute the 'lo-median'; take the smaller of the two middle values for even sample size.
+    high : bool, optional
+        If True, compute the 'hi-median'; take the larger of the two middle values for even sample size.
+
+    Returns
+    -------
+    mad : float
+        Median Absolute Deviation (MAD) calculated from the input data.
+
+    Notes
+    -----
+    The MAD is a robust measure of the variability or dispersion of a dataset. It is defined as the median of the
+    absolute deviations from the median of the data.
+
+    References
+    ----------
+    [1] Leys, C., Ley, C., Klein, O., Bernard, P., & Licata, L. (2013). Detecting outliers: Do not use standard
+    deviation around the mean, use absolute deviation around the median. Journal of Experimental Social Psychology, 49(4),
+    764-766.
+
     """
-    if len(x)== 0:
-        raise Exception("x sholud be non-empty !!!")
-    if len(x)==1:
+
+    # Check for empty input
+    if len(x) == 0:
+        raise Exception("x should be non-empty !!!")
+
+    # Check for single observation
+    if len(x) == 1:
         return 0
-    # if low TRUE, compute the ‘lo-median’, i.e., for even sample size, 
-    # do not average the two middle values, but take the smaller one.
 
-    # if high TRUE, compute the ‘hi-median’, i.e., take the 
-    # larger of the two middle values for even sample size.
-    
-    center = median(x, low, high) if center==None else center
-    
-    amd=[abs(i-center) for i in x]        
-    
-    return round(constant*median(amd), 6)
+    # Calculate the center if not provided
+    center = median(x, low, high) if center is None else center
 
+    # Calculate absolute deviations from the center
+    amd = np.abs(x - center)
 
-def Sn(x, constant = 1.1926, finite_corr=True):
-    
+    # Calculate the MAD and return the result
+    return round(constant * median(amd), 6)
+
+def Sn(x, constant=1.1926, finite_corr=True):
     """
-    Sn scale estimator , Gaussian efficiency 58%
+    Calculate the Sn scale estimator for data x.
 
-    Attributes
+    Parameters
     ----------
     x : list
-        numeric vector of observations.
-    constant : float
-        number by which the result is multiplied; the default achieves consisteny for normally distributed data.
-    finite_corr : bool
-        logical indicating if the finite sample bias correction factor should be applied. Default to TRUE unless constant is specified.
+        Numeric vector of observations.
+    constant : float, optional
+        Number by which the result is multiplied; the default achieves consistency for normally distributed data.
+    finite_corr : bool, optional
+        Logical indicating if the finite sample bias correction factor should be applied. Default to True unless constant is specified.
+
+    Returns
+    -------
+    sn : float
+        Sn scale estimator calculated from the input data.
+
+    Notes
+    -----
+    The Sn scale estimator is used to estimate the scale of a dataset, which is a measure of its spread or variability.
+    It is based on pairwise absolute differences between observations and their medians.
+
+    References
+    ----------
+    [1] Rousseeuw, P. J., & Croux, C. (1993). Alternatives to the Median Absolute Deviation. Journal of the American
+    Statistical Association, 88(424), 1273-1283.
+
     """
+
+    # Get the number of observations
     n = len(x)
-    if n==0:
-        raise Exception("x sholud be non-empty !!!")
-    if n==1:
+
+    # Check for empty input
+    if n == 0:
+        raise Exception("x should be non-empty !!!")
+
+    # Check for single observation
+    if n == 1:
         return 0
 
-    y = np.array([x,]*n)
-    z = y.transpose()
-    diff = abs(y-z)
+    # Convert input list to numpy array
+    y = np.array(x)
+
+    # Create a matrix of repeated observations and calculate absolute differences
+    z = np.repeat(y, n).reshape(n, n)
+    diff = np.abs(y - z)
+
+    # Calculate medians of absolute differences and multiply by constant
     med = np.median(diff, axis=0)
     r = round(median(med) * constant, 6)
 
-    if finite_corr==True :
-        if n <=9 :
+    # Apply finite correction if needed and return the Sn estimator
+    if finite_corr:
+        if n <= 9:
             correction = [.743, 1.851, .954, 1.351, .993, 1.198, 1.005, 1.131]
-            correction = correction[n-2]
+            correction = correction[n - 2]
         elif (n % 2) == 1:
-            correction = n/(n-.9)
-        else : 
+            correction = n / (n - 0.9)
+        else:
             correction = 1
-        r= correction*r
+        r = correction * r
+    
     return r
 
 def iqr(x):
     """
-    Interquartile range
-    """
-
-    if len(x)==0:
-        raise Exception("x sholud be non-empty !!!")
+    Calculate the interquartile range (IQR) for data x.
     
-    if len(x)==1:
+    Parameters
+    ----------
+    x : array-like
+        Numeric vector of observations.
+    
+    Returns
+    -------
+    iqr : tuple
+        A tuple containing the 75th percentile (Q3) and 25th percentile (Q1) of the input data.
+    
+    Notes
+    -----
+    The interquartile range (IQR) is a measure of statistical dispersion, which is the difference between the 75th percentile
+    (Q3) and the 25th percentile (Q1) of the dataset. It is often used to identify potential outliers in the data.
+    
+    References
+    ----------
+    [1] Tukey, J. W. (1977). Exploratory Data Analysis. Addison-Wesley.
+    
+    """
+    
+    # Check for empty input
+    if len(x) == 0:
+        raise Exception("x should be non-empty !!!")
+    
+    # Check for single observation
+    if len(x) == 1:
         return 0
     
-    q75,q25=np.percentile(x,[75,25])
+    # Calculate the 75th and 25th percentiles (Q3 and Q1)
+    q75, q25 = np.percentile(x, [75, 25])
+    
+    # Return the IQR as a tuple
     return (q75, q25)
 
 def Qn(x, constant = 2.21914, finite_corr=True):
     """
-    Qn scale estimator, Gaussian effieciency 82%
+    Calculate the Qn scale estimator for data x.
 
-    Attributes
+    Parameters
     ----------
-    x : list
-        numeric vector of observations.
-    constant : float
-        number by which the result is multiplied; the default achieves consisteny for normally distributed data.
-    finite_corr : bool
-        logical indicating if the finite sample bias correction factor should be applied. Default to TRUE unless constant is specified.
+    x : array-like
+        Numeric vector of observations.
+    constant : float, optional
+        Number by which the result is multiplied; the default achieves consistency for normally distributed data.
+    finite_corr : bool, optional
+        Logical indicating if the finite sample bias correction factor should be applied. Default to True.
+
+    Returns
+    -------
+    qn : float
+        Qn scale estimator calculated from the input data.
+
+    Notes
+    -----
+    The Qn scale estimator is used to estimate the scale of a dataset, which is a measure of its spread or variability.
+    It is based on pairwise absolute differences between observations.
+
+    References
+    ----------
+    [1] Rousseeuw, P. J., & Croux, C. (1993). Alternatives to the Median Absolute Deviation. Journal of the American
+    Statistical Association, 88(424), 1273-1283.
+
     """
+
+    # Get the number of observations
     n = len(x)
 
-    if n==0:
-        raise Exception("x sholud be non-empty !!!")
-    if n==1:
+    # Check for empty input
+    if n == 0:
+        raise Exception("x should be non-empty !!!")
+
+    # Check for single observation
+    if n == 1:
         return 0
 
-    diff = []
-    h=0
-    k=0
-    for i in range(0,n):
-        for j in range(i + 1,n):
-            diff.append(abs(x[i]-x[j]))
+    # Convert input to numpy array
+    x = np.array(x)
 
-    diff.sort()
-    h=int(math.floor(n/2)+1)
-    k=int(h*(h-1)/2)                  
-    return round(constant*diff[k-1]*bias_corr(n), 6) if finite_corr==True else round(constant*diff[k-1], 6)
+    # Calculate pairwise absolute differences
+    diffs = np.abs(np.subtract.outer(x, x))
 
+    # Get the upper triangle of the differences and sort them
+    diff_flat = diffs[np.triu_indices(n, k=1)]
+    diff_flat.sort()
+
+    # Calculate values for h and k
+    h = int(np.floor(n / 2) + 1)
+    k = int(h * (h - 1) / 2)
+
+    # Apply finite correction if needed and return the Qn estimator
+    return round(constant * diff_flat[k - 1] * bias_corr(n), 6) if finite_corr else round(constant * diff_flat[k - 1], 6)
