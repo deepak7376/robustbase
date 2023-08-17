@@ -81,7 +81,7 @@ def median(x, low=False, high=False):
 
 def mad(x, center=None, constant=1.4826, na=False, low=False, high=False):
     """
-    Calculate the Median Absolute Deviation (MAD) for data x.
+    Calculate the Median Absolute Deviation (MAD) for data x,  Gaussian efficiency 37%
 
     Parameters
     ----------
@@ -135,7 +135,7 @@ def mad(x, center=None, constant=1.4826, na=False, low=False, high=False):
 
 def Sn(x, constant=1.1926, finite_corr=True):
     """
-    Calculate the Sn scale estimator for data x.
+    Calculate the Sn scale estimator for data x, Gaussian efficiency 58%
 
     Parameters
     ----------
@@ -239,7 +239,7 @@ def iqr(x):
 
 def Qn(x, constant = 2.21914, finite_corr=True):
     """
-    Calculate the Qn scale estimator for data x.
+    Calculate the Qn scale estimator for data x, Gaussian efficiency 82%
 
     Parameters
     ----------
