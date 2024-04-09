@@ -1,90 +1,76 @@
 [![Downloads](https://pepy.tech/badge/robustbase)](https://pepy.tech/project/robustbase)
 [![Downloads](https://pepy.tech/badge/robustbase/month)](https://pepy.tech/project/robustbase/month)
 [![Downloads](https://pepy.tech/badge/robustbase/week)](https://pepy.tech/project/robustbase/week)
+
 # robustbase
-> A Python Library to Calculate Estimators.
+> A Python Library to Calculate Robust Statistical Estimators.
 
 ## Installation
 
-OS X , Windows & Linux:
+OS X, Windows & Linux:
 
 ```sh
 pip install robustbase
 ```
-## Usage example
+## Usage Example
 
-This package is used to calculate the following statistical estimators.
+This package provides functions to calculate the following robust statistical estimators:
 
-* **Qn scale estimator**
-    * Compute the robust scale estimator Qn, an efficient alternative to the MAD. [Read More.](https://rdrr.io/rforge/robustbase/man/Qn.html)
-```python
-Qn(x, constant = 2.21914, finite_corr=True)
-```
+* **Qn Scale Estimator**
+    * Computes the robust scale estimator Qn, an efficient alternative to the MAD. [Read More](https://rdrr.io/rforge/robustbase/man/Qn.html)
 
 ```python
-from robustbase import Qn
+from robustbase.stats import Qn
   
 x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-# with bias correction
-res = Qn(x)  # ans = 3.196183
+# With bias correction
+res = Qn(x)  # result: 3.196183
 
 # Without bias correction
-res = Qn(x, finite_corr=False)  # ans = 4.43828
+res = Qn(x, finite_corr=False)  # result: 4.43828
 
 ```
 
-* **Sn scale estimator**
-    * Compute the robust scale estimator Sn, an efficient alternative to the MAD.[Read More.](https://rdrr.io/rforge/robustbase/man/Sn.html)
+* **Sn Scale Estimator**
+    * Computes the robust scale estimator Sn, an efficient alternative to the MAD. [Read More](https://rdrr.io/rforge/robustbase/man/Sn.html)
 
 ```python
-Sn(x, constant = 1.1926, finite_corr=True)
-
-```
-
-```python
-from robustbase import Sn
+from robustbase.stats import Sn
   
 x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-# with bias correction
-res = Sn(x)  # ans = 3.5778 
+# With bias correction
+res = Sn(x)  # result: 3.5778 
 
 # Without bias correction
-res = Sn(x, finite_corr=False)  # ans = 3.5778
+res = Sn(x, finite_corr=False)  # result: 3.5778
 
 ```
 
-* **Median Absolute Deviation(MAD)**
+* **Median Absolute Deviation (MAD)**
+    * Compute the MAD, a robust measure of the variability of a univariate sample of quantitative data. [Read More](https://en.wikipedia.org/wiki/Median_absolute_deviation)
 
 ```python
-mad(x, center = None, constant = 1.4826, na = False,
-    low = False, high = False)
-```
-
-```python
-from robustbase import mad
+from robustbase.stats import mad
 
 x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 res = mad(x)
 
 ```
 * **Interquartile Range (IQR)**
+    * Compute the interquartile range, a measure of statistical dispersion, or spread. [Read More](https://en.wikipedia.org/wiki/Interquartile_range)
 
 ```python
-iqr(x)
-```
+from robustbase.stats import iqr
 
-```python
-from robustbase import iqr
-
-x = [1, 2, 3, 4. 5]
+x = [1, 2, 3, 4, 5]
 res = iqr(x)
 ```
 
-## Development setup
+## Development Setup
 
-For local development setup
+For local development setup:
 
 ```sh
 git clone https://github.com/deepak7376/robustbase
@@ -92,24 +78,24 @@ cd robustbase
 pip install -r requirements.txt
 ```
 
-## Meta
+## Recent Changes
 
-Deepak Yadav – [@imdeepak_dky](https://twitter.com/imdeepak_dky) – dky.united@gmail.com
+### Version 3.0.0
+- Changed the API's call
+- Refactored the dir structure
+- Updated README with usage examples for all functions.
 
-Distributed under the MIT license. See ``LICENSE`` for more information.
-
-[https://github.com/deepak7376/robustbase/blob/master/LICENSE](https://github.com/deepak7376)
 
 ## Contributing
 
-1. Fork it (<https://github.com/deepak7376/robustbase/fork>)
+1. Fork it ([https://github.com/deepak7376/robustbase/fork](https://github.com/deepak7376/robustbase/fork))
 2. Create your feature branch (`git checkout -b feature/fooBar`)
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)
 5. Create a new Pull Request
 
 ## References
-https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/qn_scale.htm
-https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/sn_scale.htm
-https://www.statisticshowto.datasciencecentral.com/median-absolute-deviation/
-https://www.statisticshowto.datasciencecentral.com/probability-and-statistics/interquartile-range/
+- [Qn Scale Estimator](https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/qn_scale.htm)
+- [Sn Scale Estimator](https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/sn_scale.htm)
+- [Median Absolute Deviation](https://www.statisticshowto.datasciencecentral.com/median-absolute-deviation/)
+- [Interquartile Range](https://www.statisticshowto.datasciencecentral.com/probability-and-statistics/interquartile-range/)
