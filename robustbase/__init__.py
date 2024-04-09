@@ -1,6 +1,6 @@
-from .robustbase import Qn
-from .robustbase import Sn
-from .robustbase import iqr
-from .robustbase import mad
+from .robustbase import Qn # noqa: F401
+from .robustbase import Sn # noqa: F401
+from .robustbase import iqr # noqa: F401
+from .robustbase import mad # noqa: F401
 
 
