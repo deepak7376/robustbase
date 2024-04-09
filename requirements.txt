@@ -2,3 +2,4 @@ certifi>=2019.11.28
 docutils>=0.15.2
 numpy>=1.18.0
 statistics>=1.0.3.5
+pytest>=8.1.1

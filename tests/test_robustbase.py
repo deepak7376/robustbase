@@ -1,4 +1,4 @@
-from src.robustbase import Sn, Qn, iqr, mad
+from robustbase.robustbase import Sn, Qn, iqr, mad
 
 def test_robustbase():
 	x1 = [x for x in range(1, 201)]

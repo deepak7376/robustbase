@@ -1,7 +1,10 @@
 import statistics
 import math
 import numpy as np
+import warnings
 
+def deprecated_function():
+    warnings.warn("DeprecationWarning: Importing Qn, Sn, iqr, mad from robustbase is deprecated. Please use from robustbase.stats import Qn, Sn, mad, iqr instead.", DeprecationWarning)
 
 #Author: Deepak Yadav
 #E-mail: dky.united@gmail.com
@@ -50,6 +53,7 @@ def median(x, low=False, high=False):
 
 def mad(x, center = None, constant = 1.4826, na = False,
     low = False, high = False):
+    warnings.warn("The 'mad' function is deprecated and will be removed in a future version. Please use from robustbase.stats import Qn, Sn, mad, iqr instead.", DeprecationWarning)
     """
     Median absolute deviation (MAD), Gaussian efficiency 37%
     
@@ -72,6 +76,7 @@ def mad(x, center = None, constant = 1.4826, na = False,
 
 
 def Sn(x, constant = 1.1926, finite_corr=True):
+    warnings.warn("The 'Sn' function is deprecated and will be removed in a future version. Please use from robustbase.stats import Qn, Sn, mad, iqr instead.", DeprecationWarning)
     
     """
     Sn scale estimator , Gaussian efficiency 58%
@@ -109,6 +114,7 @@ def Sn(x, constant = 1.1926, finite_corr=True):
     return r
 
 def iqr(x):
+    warnings.warn("The 'iqr' function is deprecated and will be removed in a future version. Please use from robustbase.stats import Qn, Sn, mad, iqr instead.", DeprecationWarning)
     """
     Interquartile range
     """
@@ -123,6 +129,7 @@ def iqr(x):
     return (q75, q25)
 
 def Qn(x, constant = 2.21914, finite_corr=True):
+    warnings.warn("The 'Qn' function is deprecated and will be removed in a future version. Please use from robustbase.stats import Qn, Sn, mad, iqr instead.", DeprecationWarning)
     """
     Qn scale estimator, Gaussian effieciency 82%
 

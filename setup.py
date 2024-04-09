@@ -1,4 +1,3 @@
-
 from setuptools import setup, find_packages
 import subprocess
 import os
@@ -40,23 +39,33 @@ CLASSIFIERS = [
     ] 
   
 # calling the setup function  
-setup(name='robustbase', 
-      version=version, 
-      description='A Python Based Library to Calculate Estimators (Sn, Qn, MAD, IQR)', 
-      long_description=long_description, 
-      long_description_content_type='text/markdown',
-      url='https://github.com/deepak7376/robustbase', 
-      author='Deepak Yadav', 
-      author_email='dky.united@gmail.com', 
-      license='MIT', 
-      py_modules=["robustbase"],
-      package_dir={'':'src'},
-      classifiers=[
-        "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: MIT License",
-        "Operating System :: OS Independent",
-    ],  
-      keywords='Sn Qn MAD IQR',
-      python_requires='>=3'
-
-      ) 
+setup(
+    name='robustbase', 
+    version=version, 
+    description='A Python Based Library to Calculate Estimators (Sn, Qn, MAD, IQR)', 
+    long_description=long_description, 
+    long_description_content_type='text/markdown',
+    url='https://github.com/deepak7376/robustbase', 
+    author='Deepak Yadav', 
+    author_email='dky.united@gmail.com', 
+    license='MIT', 
+    packages=find_packages(),  # Include all packages in the new version
+    include_package_data=True,
+    package_dir={'robustbase': 'robustbase'},
+    project_urls={
+        'Source': 'https://github.com/deepak7376/robustbase',
+        'Tracker': 'https://github.com/deepak7376/robustbase/issues',
+    },
+    classifiers=[
+        'Development Status :: 3 - Alpha',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+    ],
+    keywords='robust statistics robustness Sn Qn MAD IQR',
+    python_requires='>=3.0',
+)
