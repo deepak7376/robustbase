@@ -21,7 +21,7 @@ This package provides functions to calculate the following robust statistical es
 
 ```python
 from robustbase.stats import Qn
-  
+
 x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 # With bias correction
@@ -37,11 +37,11 @@ res = Qn(x, finite_corr=False)  # result: 4.43828
 
 ```python
 from robustbase.stats import Sn
-  
+
 x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 # With bias correction
-res = Sn(x)  # result: 3.5778 
+res = Sn(x)  # result: 3.5778
 
 # Without bias correction
 res = Sn(x, finite_corr=False)  # result: 3.5778
@@ -75,7 +75,7 @@ For local development setup:
 ```sh
 git clone https://github.com/deepak7376/robustbase
 cd robustbase
-pip install -r requirements.txt
+pip install -r requirements.txt -r requirements-dev.txt
 ```
 
 ## Recent Changes
