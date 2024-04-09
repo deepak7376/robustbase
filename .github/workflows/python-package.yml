@@ -30,4 +30,4 @@ jobs:
     - name: Run tests
       run: |
         export PYTHONPATH="${PYTHONPATH}:/robustbase/"
-        python3 tests/test_robustbase.py
+        pytest tests/
