@@ -1,4 +1,4 @@
-from typing import Optional, Union
+from typing import Optional, Tuple, Union
 
 import numpy as np
 import pytest
@@ -29,7 +29,7 @@ X_EVEN_N = [5.5, 3.2, -10.0, -2.1, 8.4, 0.0]
     ],
 )
 def test_median(
-    comb: tuple[Union[list, np.ndarray], bool, bool, Optional[float]],
+    comb: Tuple[Union[list, np.ndarray], bool, bool, Optional[float]],
     as_array: bool,
 ):
     x, low, high, expected = comb
