@@ -51,7 +51,7 @@ setup(
     license='MIT', 
     packages=find_packages('robustbase'),  # Include all packages in the new version
     include_package_data=True,
-    package_dir={'': 'robustbase'},
+    package_dir={'robustbase': 'robustbase'},
     project_urls={
         'Source': 'https://github.com/deepak7376/robustbase',
         'Tracker': 'https://github.com/deepak7376/robustbase/issues',
