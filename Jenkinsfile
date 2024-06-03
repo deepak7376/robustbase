@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'python:3.8-slim'
+            args '-v /var/run/docker.sock:/var/run/docker.sock -v /usr/bin/docker:/usr/bin/docker'
+        }
+    }
 
     environment {
         DOCKER_IMAGE = "robustbase_img"
@@ -9,7 +14,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout the repository
-                git url: 'https://github.com/deepak7376/robustbase.git', branch: 'master'
+                git url: 'https://github.com/deepak7376/robustbase.git', branch: 'main'
             }
         }
 
