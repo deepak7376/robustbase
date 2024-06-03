@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        DOCKER_IMAGE = "robustbase_img"
-    }
-
     stages {
         stage('Checkout') {
             steps {
@@ -13,59 +9,49 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Install Dependencies') {
             steps {
-                script {
-                    // Create Dockerfile dynamically
-                    writeFile file: 'Dockerfile', text: '''
-                    FROM python:3.8-slim
+                // Install Python dependencies
+                sh '''
+                # Create a virtual environment
+                python3 -m venv venv
 
-                    WORKDIR /app
+                # Activate virtual environment
+                source venv/bin/activate
 
-                    # Copy requirements file
-                    COPY requirements.txt .
-
-                    # Install dependencies
-                    RUN pip install --no-cache-dir -r requirements.txt
-
-                    # Copy requirements-dev file
-                    COPY requirements-dev.txt .
-
-                    # Install dev dependencies
-                    RUN pip install --no-cache-dir -r requirements-dev.txt
-
-                    # Copy the rest of the application
-                    COPY . .
-
-                    # Command to run tests
-                    CMD ["pytest", "tests/"]
-                    '''
-
-                    // Build Docker image
-                    sh 'docker build -t ${DOCKER_IMAGE} .'
-                }
+                # Install dependencies
+                pip install --upgrade pip
+                pip install -r requirements.txt
+                pip install -r requirements-dev.txt
+                '''
             }
         }
 
         stage('Run Tests') {
             steps {
-                // Run Docker container and execute pytest
-                sh 'docker run --rm ${DOCKER_IMAGE}'
+                // Run tests using pytest
+                sh '''
+                # Activate virtual environment
+                source venv/bin/activate
+
+                # Run pytest
+                pytest tests/
+                '''
             }
         }
 
         stage('Cleanup') {
             steps {
-                // Remove Docker image
-                sh 'docker rmi ${DOCKER_IMAGE}'
+                // Clean up the workspace
+                cleanWs()
             }
         }
     }
 
     post {
         always {
-            // Clean up workspace after build
-            cleanWs()
+            // Clean up the virtual environment if it exists
+            sh 'rm -rf venv'
         }
         success {
             echo 'Build completed successfully!'
