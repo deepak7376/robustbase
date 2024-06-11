@@ -30,4 +30,5 @@ jobs:
         if [ -f dev-requirements.txt ]; then pip install -r dev-requirements.txt; fi
     - name: Run tests
       run: |
+        export PYTHONPATH=$PWD
         pytest tests/
