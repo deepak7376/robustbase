@@ -28,7 +28,7 @@ with open('README.md', encoding='utf-8') as f:
 setup(
     name='robustbase', 
     version=version, 
-    description='A Python Based Library to Calculate Estimators (Sn, Qn, MAD, IQR)', 
+    description='A Python Based Library to Calculate Estimators (Sn, Qn, MAD, IQR, covComed)', 
     long_description=long_description, 
     long_description_content_type='text/markdown',
     url='https://github.com/deepak7376/robustbase', 
@@ -57,6 +57,7 @@ setup(
         'certifi>=2019.11.28',
         'docutils>=0.15.2',
         'numpy>=1.18.0',
+        'scipy>=1.13.1',
         'statistics>=1.0.3.5',
     ],
     extras_require={

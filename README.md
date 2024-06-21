@@ -68,6 +68,24 @@ x = [1, 2, 3, 4, 5]
 res = iqr(x)
 ```
 
+* **Co-Median Location and Scatter "Covariance" Estimator**
+    * Compute the multivariate "Comedian" covariance, a robust measure of multivariate location and scatter. Read More
+
+```python
+from robustbase.stats import covComed
+
+# Example data matrix
+X = np.random.rand(100, 3)
+
+# Compute the Co-Median covariance estimator
+result = covComed(X)
+
+# Access the components of the result
+print("Covariance Matrix:", result.cov)
+print("Center:", result.center)
+print("Weights:", result.weights)
+```
+
 ## Development Setup
 
 For local development setup:

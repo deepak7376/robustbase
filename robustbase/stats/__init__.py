@@ -1,4 +1,5 @@
-from .iqr import iqr  # noqa: F401
-from .mad import mad  # noqa: F401
-from .Qn import Qn  # noqa: F401
-from .Sn import Sn  # noqa: F401
+from .iqr import iqr  
+from .mad import mad  
+from .Qn import Qn  
+from .Sn import Sn  
+from .covComed import covComed
